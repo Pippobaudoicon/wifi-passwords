@@ -5,7 +5,7 @@ data = meta_data.decode('utf-8', errors="backslashreplace")
 data = data.split('\n')
 profiles = []
 for i in data:
-    # Change it into your language -- can be found by running "netsh wlan show profiles" on cmd
+    # Change it into your system language -- can be found by running "netsh wlan show profiles" on cmd
     if "Tutti i profili utente" in i:
         i = i.split(":")
         i = i[1]
@@ -21,7 +21,7 @@ for i in profiles:
         results = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', i, 'key=clear'])
         results = results.decode('utf-8', errors="backslashreplace")
         results = results.split('\n')
-        # Change it into your language -- can be found by running "netsh wlan show profile [profile name] key=clear" on cmd
+        # Change it into your system language -- can be found by running "netsh wlan show profile [profile name] key=clear" on cmd
         results = [b.split(":")[1][1:-1] for b in results if "Contenuto chiave" in b]
 
         try:
